@@ -10,13 +10,12 @@ import {
   type LeaderboardWindow
 } from '../lib/openblog';
 import { toAbsoluteUrl } from '../lib/seo';
-import { getSiteUrl } from '../lib/site';
+import { getPullRequestUrl, getSiteUrl } from '../lib/site';
 
 const seasonKeys: LeaderboardWindow[] = ['all', 'month', 'week'];
 const rowsPerPage = 10;
 const postSlugs = new Set(getPosts().map((post) => post.slug));
 const getProfileUrl = (username: string) => `/profile/@${username}`;
-const getPullRequestUrl = (prNumber: number) => `https://github.com/hajiparvaneh/openblog/pull/${prNumber}`;
 const getPostUrl = (postSlug: string) => (postSlugs.has(postSlug) ? `/posts/${postSlug}` : null);
 const formatDateLabel = (value: string | null): string => {
   if (!value) return 'OpenBlog launch';

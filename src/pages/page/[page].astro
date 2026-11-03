@@ -10,7 +10,7 @@ import {
   getRecentEvents
 } from '../../lib/openblog';
 import { toAbsoluteUrl } from '../../lib/seo';
-import { getSiteUrl } from '../../lib/site';
+import { getPullRequestUrl, getSiteUrl } from '../../lib/site';
 
 export function getStaticPaths() {
   const postsPerPage = 6;
@@ -51,9 +51,6 @@ const postPageNumbers = Array.from({ length: postsTotalPages }, (_, index) => in
 const getHomePagePath = (page: number): string => (page <= 1 ? '/' : `/page/${page}`);
 const getPostPath = (slug: string): string =>
   `/posts/${slug.split('/').map((segment) => encodeURIComponent(segment)).join('/')}`;
-const getPullRequestUrl = (prNumber: number): string =>
-  `https://github.com/hajiparvaneh/openblog/pull/${prNumber}`;
-
 const leaderboardResult = getLeaderboardByWindowWithFallback('month');
 const leaderboard = leaderboardResult.entries;
 const isAllTimeContributors = leaderboardResult.resolvedWindow === 'all';

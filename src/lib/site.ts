@@ -1,5 +1,18 @@
 const DEFAULT_SITE_URL = 'https://openblog.cc/';
 
+/** Community preview repo (PRs, edits, issues) — not the cloneable template. */
+export const COMMUNITY_GITHUB_REPO = 'hajiparvaneh/openblogcc';
+export const COMMUNITY_GITHUB_URL = `https://github.com/${COMMUNITY_GITHUB_REPO}`;
+
+export function getPullRequestUrl(prNumber: number): string {
+  return `${COMMUNITY_GITHUB_URL}/pull/${prNumber}`;
+}
+
+export function getBlobUrl(filePath: string, branch = 'main'): string {
+  const normalized = filePath.replace(/^\/+/, '');
+  return `${COMMUNITY_GITHUB_URL}/blob/${branch}/${normalized}`;
+}
+
 function ensureTrailingSlash(url: string): string {
   return url.endsWith('/') ? url : `${url}/`;
 }

@@ -8,7 +8,7 @@ import {
   getUserProfile
 } from '../../../lib/openblog';
 import { toAbsoluteUrl } from '../../../lib/seo';
-import { getSiteUrl } from '../../../lib/site';
+import { getPullRequestUrl, getSiteUrl } from '../../../lib/site';
 
 export function getStaticPaths() {
   return getKnownContributors().map((username) => ({ params: { username: `@${username}` } }));
@@ -21,7 +21,6 @@ if (!profile) {
   throw new Error('Profile not found');
 }
 
-const getPullRequestUrl = (prNumber: number) => `https://github.com/hajiparvaneh/openblog/pull/${prNumber}`;
 const getPostUrl = (postSlug: string) => `/posts/${postSlug}`;
 const postsPerPage = 8;
 const postsTotalPages = Math.max(1, Math.ceil(profile.contributedPosts.length / postsPerPage));

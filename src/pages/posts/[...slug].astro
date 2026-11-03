@@ -18,7 +18,7 @@ import {
   getContributorsForPost
 } from '../../lib/openblog';
 import { toAbsoluteUrl } from '../../lib/seo';
-import { getSiteUrl } from '../../lib/site';
+import { getBlobUrl, getPullRequestUrl, getSiteUrl } from '../../lib/site';
 
 type ScoringLabelConfig = {
   points: number;
@@ -51,7 +51,6 @@ const html = marked.parse(post.body);
 const getProfileUrl = (username: string) => `/profile/@${username}`;
 const getPostUrlBySlug = (postSlug: string) =>
   `/posts/${postSlug.split('/').map((segment) => encodeURIComponent(segment)).join('/')}`;
-const getPullRequestUrl = (prNumber: number) => `https://github.com/hajiparvaneh/openblog/pull/${prNumber}`;
 const formatMergedDate = (isoDate: string) => {
   const parsed = new Date(isoDate);
   return Number.isNaN(parsed.getTime()) ? isoDate : parsed.toISOString().slice(0, 10);
@@ -151,7 +150,7 @@ const manualContributionHints: ManualContributionHint[] = [
 const categoryPath = getCategoryPath(post.category);
 const postSourcePath = post.slug.split('/').map((segment) => encodeURIComponent(segment)).join('/');
 const quickEditPath = `/contribute/edit/${postSourcePath}`;
-const postSourceUrl = `https://github.com/hajiparvaneh/openblog/blob/main/content/posts/${postSourcePath}.md`;
+const postSourceUrl = getBlobUrl(`content/posts/${post.slug}.md`);
 const canonicalPath = `/posts/${postSourcePath}`;
 const pageDescription = post.description || `Read ${post.title} on OpenBlog.`;
 const translatedFromPost = post.translateOf ? getPostBySlug(post.translateOf) : undefined;

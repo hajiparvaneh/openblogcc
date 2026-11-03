@@ -5,7 +5,7 @@ import CookieConsentManager from '../components/CookieConsentManager.astro';
 import UserAvatar from '../components/UserAvatar.astro';
 import { getCategoryPath, getLatestContributors, getPosts, getProfilePath } from '../lib/openblog';
 import { toAbsoluteUrl } from '../lib/seo';
-import { getSiteUrl } from '../lib/site';
+import { COMMUNITY_GITHUB_URL, getSiteUrl } from '../lib/site';
 type JsonLd = Record<string, unknown>;
 
 type BaseLayoutProps = {
@@ -62,7 +62,7 @@ const categories = [...posts.reduce((map, post) => {
 }, new Map<string, { label: string; postCount: number }>()).entries()]
   .sort((a, b) => b[1].postCount - a[1].postCount || a[1].label.localeCompare(b[1].label));
 const latestContributors = getLatestContributors(10);
-const repoUrl = 'https://github.com/hajiparvaneh/openblog';
+const repoUrl = COMMUNITY_GITHUB_URL;
 const hasSidebarExtra = Astro.slots.has('sidebar-extra');
 const showGlobalSidebar = categories.length > 0 && !hideGlobalSidebar;
 const configuredAuthWorkerUrl = (import.meta.env.PUBLIC_GITHUB_AUTH_WORKER_URL ?? '').trim();
@@ -291,7 +291,7 @@ const authWorkerBaseUrl = (() => {
               <p class="meta">Found a bug or typo? Let us know by opening an issue.</p>
               <a
                 class="sidebar-link"
-                href="https://github.com/hajiparvaneh/openblog/issues/new"
+                href={`${COMMUNITY_GITHUB_URL}/issues/new`}
                 target="_blank"
                 rel="noopener noreferrer"
               >

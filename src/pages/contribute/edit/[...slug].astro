@@ -5,7 +5,7 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import QuickContributeForm from '../../../components/QuickContributeForm.astro';
 import { getCategoryPath, getPostBySlug, getPosts } from '../../../lib/openblog';
 import { toAbsoluteUrl } from '../../../lib/seo';
-import { getSiteUrl } from '../../../lib/site';
+import { getBlobUrl, getSiteUrl } from '../../../lib/site';
 
 export function getStaticPaths() {
   return getPosts().map((post) => ({ params: { slug: post.slug } }));
@@ -25,7 +25,7 @@ const postDiskPath = path.join(process.cwd(), postFilePath);
 const postRawMarkdown = fs.readFileSync(postDiskPath, 'utf8');
 const postPath = `/posts/${postSourcePath}`;
 const categoryPath = getCategoryPath(post.category);
-const postSourceUrl = `https://github.com/hajiparvaneh/openblog/blob/main/${postFilePath}`;
+const postSourceUrl = getBlobUrl(postFilePath);
 
 const defaultEditPrTitle = `Improve ${post.title}`;
 const defaultEditPrBody = `## Summary

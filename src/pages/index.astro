@@ -15,7 +15,7 @@ import {
   getTagRecords
 } from '../lib/openblog';
 import { toAbsoluteUrl } from '../lib/seo';
-import { getSiteUrl } from '../lib/site';
+import { getPullRequestUrl, getSiteUrl } from '../lib/site';
 
 const posts = getPosts();
 const latestPost = posts[0];
@@ -114,9 +114,6 @@ const faqEntries = [
 const getPostPath = (slug: string): string =>
   `/posts/${slug.split('/').map((segment) => encodeURIComponent(segment)).join('/')}`;
 const getHomePagePath = (page: number): string => (page <= 1 ? '/' : `/page/${page}`);
-
-const getPullRequestUrl = (prNumber: number): string =>
-  `https://github.com/hajiparvaneh/openblog/pull/${prNumber}`;
 
 const pageDescription =
   'OpenBlog is a free collaborative technical blog where developers publish with pull requests, build a visible GitHub portfolio, and improve hiring reputation.';

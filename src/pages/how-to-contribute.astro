@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { toAbsoluteUrl } from '../lib/seo';
-import { getSiteUrl } from '../lib/site';
+import { COMMUNITY_GITHUB_URL, getSiteUrl } from '../lib/site';
 
 type ScoringLabelConfig = {
   points: number;
@@ -43,7 +43,7 @@ const sortedScoringRules = Object.entries(parsedScoreByLabel)
   .sort((a, b) => b.points - a.points);
 const topScoringRule = sortedScoringRules[0];
 const metadataScoringRule = sortedScoringRules.find((rule) => rule.label === 'fix-metadata');
-const repoUrl = 'https://github.com/hajiparvaneh/openblog';
+const repoUrl = COMMUNITY_GITHUB_URL;
 const pageDescription =
   'Learn how to contribute to OpenBlog in one focused pull request and build visible GitHub proof of teamwork, writing quality, and technical consistency.';
 const canonicalPath = '/how-to-contribute';
