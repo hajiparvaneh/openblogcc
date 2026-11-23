@@ -13,13 +13,13 @@
     "openblog:add-event": "node scripts/add-event-from-pr.mjs"
   },
   "dependencies": {
-    "@toast-ui/editor": "^3.2.2",
+    "@toast-ui/editor": "^3.2.3",
     "astro": "^6.0.4",
     "gray-matter": "^4.0.3",
     "marked": "^17.0.4"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.7",
+    "@astrojs/check": "^0.9.12",
     "@types/node": "^25.5.0",
     "typescript": "^5.9.3"
   }
